@@ -5,9 +5,9 @@ by `Olivier Louvignes`
 
 This repository contains several plugins for Sencha Touch 2.0, for now most of them are graceful native upgrades for IOS.
 
-* Ext.ux.MessageBox : graceful upgrade to native `UIAlertView`.
+* Ext.ux.MessageBox : graceful upgrade to native `UIAlertView`. Phonegap counterpart [here](https://github.com/mgcrea/phonegap-plugins/tree/master/iPhone/MessageBox).
 
-* Ext.ux.ActionSheet : graceful upgrade to native `UIActionSheet`.
+* Ext.ux.ActionSheet : graceful upgrade to native `UIActionSheet`. Phonegap counterpart [here](https://github.com/mgcrea/phonegap-plugins/tree/master/iPhone/ActionSheet).
 
 ## SETUP ##
 
