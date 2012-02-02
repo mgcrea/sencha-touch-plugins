@@ -7,11 +7,13 @@ This repository contains several plugins for Sencha Touch 2.0, for now most of t
 
 * Ext.ux.MessageBox : graceful upgrade to native `UIAlertView`. Phonegap counterpart [here](https://github.com/mgcrea/phonegap-plugins/tree/master/iPhone/MessageBox).
 
-* Ext.ux.ActionSheet : graceful upgrade to native `UIActionSheet`. Phonegap counterpart [here](https://github.com/mgcrea/phonegap-plugins/tree/master/iPhone/ActionSheet).
+* Ext.ux.ActionSheet : graceful upgrade to native `UIActionSheet`. Phonegap counterpart [here](https://github.com/mgcrea/phonegap-plugins/tree/master-actionsheet/iPhone/ActionSheet).
+
+* Ext.ux.PickerView : graceful upgrade to native `UIPickerView`. Phonegap counterpart [here](https://github.com/mgcrea/phonegap-plugins/tree/master-pickerview/iPhone/PickerView).
 
 ## SETUP ##
 
-Using graceful upgrades plugins requires [iPhone PhoneGap](http://github.com/phonegap/phonegap-iphone).
+Using graceful upgrades plugins requires [iPhone PhoneGap](https://github.com/cordova/cordova-ios).
 
 1. Make sure your PhoneGap Xcode project has been [updated for the iOS 4 SDK](http://wiki.phonegap.com/Upgrade-your-PhoneGap-Xcode-Template-for-iOS-4)
 2. Follow setup instructions concerning the Phonegap counterpart you will need.
