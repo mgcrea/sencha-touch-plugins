@@ -15,27 +15,15 @@ Ext.define('Ext.ux.PhonegapPicker', {
 	pluginItemsConfig: [],
 
 	constructor: function(config) {
-		console.warn(Ext.getDisplayName(arguments.callee), [this, arguments]);
+		d&&console.log(Ext.getDisplayName(arguments.callee), [this, arguments]);
 
-		this.pluginEnabled = true;//window['plugins'] && window.plugins.hasOwnProperty('pickerView');
+		this.pluginEnabled = Ext.os.is.iOS && window['plugins'] && window.plugins.hasOwnProperty('pickerView');
 		if(this.pluginEnabled) {
 			// Initialize on create() & reset
 			this.pluginItems = [];
 			this.pluginConfig = {};
-			// Add items
-			//if(config.hasOwnProperty('slots')) this.add(config.slots);
-			return this.callParent([config]);
-		} else {
-			return this.callParent([config]);
-		}
-	},
-
-	// pr3 broke this
-	// probably because of add()
-	updateUseTitles: function() {
-		console.warn(Ext.getDisplayName(arguments.callee), [this, arguments]);
-		if(this.pluginEnabled) {
-			// do nothing
+			config.hidden = true;
+			return this.callParent(arguments);
 		} else {
 			return this.callParent(arguments);
 		}
@@ -43,7 +31,7 @@ Ext.define('Ext.ux.PhonegapPicker', {
 
 	// Define default value
 	setValue: function(values) {
-		console.warn(Ext.getDisplayName(arguments.callee), [this, arguments]);
+		d&&console.log(Ext.getDisplayName(arguments.callee), [this, arguments]);
 		var self = this;
 		if(this.pluginEnabled) {
 			for (var key in self.pluginItems) {
@@ -58,7 +46,12 @@ Ext.define('Ext.ux.PhonegapPicker', {
 
 	// ST only
 	add: function(newItems) {
-		console.warn(Ext.getDisplayName(arguments.callee), [this, arguments]);
+		d&&console.log(Ext.getDisplayName(arguments.callee), [this, arguments]);
+
+		if(_.isArray(newItems) && this.getId().match(/ext-datepicker/) && App.locale.config.locale == 'fr') {
+			newItems = [newItems[1], newItems[0], newItems[2]];
+		}
+
 		if(this.pluginEnabled && Ext.isArray(newItems)) {
 			var self = this,
 				newItem;
@@ -88,9 +81,9 @@ Ext.define('Ext.ux.PhonegapPicker', {
 					self.pluginItems.push(newItem);
 				}
 			});
-			return this.callParent([newItems]);
+			return this.callParent(arguments);
 		} else {
-			return this.callParent([newItems]);
+			return this.callParent(arguments);
 		}
 	},
 
@@ -112,7 +105,7 @@ Ext.define('Ext.ux.PhonegapPicker', {
 			console.warn('create', [self, self.pluginItems, callback, self.pluginConfig]);
 			return window.plugins.pickerView.create(null, self.pluginItems, callback, self.pluginConfig);
 		} else {
-			return this.callParent([]);
+			return this.callParent(arguments);
 		}
 	},
 
@@ -122,7 +115,7 @@ Ext.define('Ext.ux.PhonegapPicker', {
 			// Not implemented
 			return false;
 		} else {
-			return this.callParent();
+			return this.callParent(arguments);
 		}
 	}
 
