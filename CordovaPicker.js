@@ -145,7 +145,7 @@ Ext.define('Ext.ux.CordovaPicker', {
 
 	'hide': function() {
 		if(this.cordovaPicker) {
-			// @todo
+			this.pluginIsHidden = true;
 			return false;
 		} else {
 			return this.callParent(arguments);
