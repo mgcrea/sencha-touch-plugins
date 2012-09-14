@@ -35,9 +35,9 @@ Ext.define('Ext.ux.CordovaPicker', {
 		config = config || {};
 
 		// Local alias
-		this.cordovaPicker = Ext.os.is.iOS && window.plugins && window.plugins.pickerView ? window.plugins.pickerView : false;
+		this.cordovaPlugin = Ext.os.is.iOS && window.plugins && window.plugins.pickerView ? window.plugins.pickerView : false;
 
-		if(this.cordovaPicker) {
+		if(this.cordovaPlugin) {
 			// Initialize on create&reset
 			this.pluginItems = [];
 			this.pluginConfig = {};
@@ -62,7 +62,7 @@ Ext.define('Ext.ux.CordovaPicker', {
 		//console.log(Ext.getDisplayName(arguments.callee), [this, arguments]);
 		var me = this;
 
-		if(this.cordovaPicker) {
+		if(this.cordovaPlugin) {
 			for (var key in me.pluginItems) {
 				var slot = me.pluginItems[key];
 				if(values.hasOwnProperty(slot.name)) slot.value = values[slot.name];
@@ -77,7 +77,7 @@ Ext.define('Ext.ux.CordovaPicker', {
 		//console.log(Ext.getDisplayName(arguments.callee), [this, arguments]);
 		this.callParent(arguments);
 
-		if(this.cordovaPicker) {
+		if(this.cordovaPlugin) {
 			var me = this;
 			newItems = Ext.Array.from(newItems);
 
@@ -121,7 +121,7 @@ Ext.define('Ext.ux.CordovaPicker', {
 		//console.log(Ext.getDisplayName(arguments.callee), [this, arguments]);
 		var me = this;
 
-		if(this.cordovaPicker) {
+		if(this.cordovaPlugin) {
 			if(!this.pluginIsHidden) return false;
 			this.pluginIsHidden = false;
 			// Execute actual exec here
@@ -144,7 +144,7 @@ Ext.define('Ext.ux.CordovaPicker', {
 	},
 
 	'hide': function() {
-		if(this.cordovaPicker) {
+		if(this.cordovaPlugin) {
 			this.pluginIsHidden = true;
 			return false;
 		} else {

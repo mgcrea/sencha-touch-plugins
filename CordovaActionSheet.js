@@ -18,22 +18,20 @@ Ext.define('Ext.ux.CordovaActionSheet', {
 	constructor: function(config) {
 
 		// Local alias
-		this.cordovaActionSheet = window.plugins && window.plugins.actionSheet ? window.plugins.actionSheet : true;
+		this.cordovaPlugin = window.plugins && window.plugins.actionSheet ? window.plugins.actionSheet : false;
 
-        if(this.cordovaActionSheet) {
+        if(this.cordovaPlugin) {
 			// Initialize on create&reset
 			this.pluginItems = [];
 			this.pluginConfig = {};
 			this.pluginItemsConfig = [];
-
-			return this.callParent(arguments);
-		} else {
-			return this.callParent(arguments);
 		}
+
+		return this.callParent(arguments);
     },
 
 	add: function(newItems) {
-		if(this.cordovaActionSheet) {
+		if(this.cordovaPlugin) {
 			var me = this;
 			newItems = Ext.Array.from(newItems);
 
@@ -59,7 +57,7 @@ Ext.define('Ext.ux.CordovaActionSheet', {
 	},
 
 	show: function() {
-		if(this.cordovaActionSheet) {
+		if(this.cordovaPlugin) {
 			var me = this;
 			// Execute actual exec here
 			// @info ST does not support title
@@ -78,7 +76,7 @@ Ext.define('Ext.ux.CordovaActionSheet', {
 	},
 
 	'hide': function() {
-		if(window['plugins'] && window.plugins.hasOwnProperty('actionSheet')) {
+		if(this.cordovaPlugin) {
 			// @todo
 			return false;
 		} else {

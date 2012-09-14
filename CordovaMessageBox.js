@@ -11,9 +11,17 @@ Ext.define('Ext.ux.CordovaMessageBox', {
 
 	override: 'Ext.MessageBox',
 
+	constructor: function() {
+
+		// Local alias
+		this.cordovaPlugin = Ext.os.is.iOS && window.plugins && window.plugins.messageBox ? window.plugins.messageBox : false;
+
+		return this.callParent(arguments);
+	},
+
 	alert: function(title, msg, fn, scope) {
 
-		if(window.plugins && window.plugins.hasOwnProperty('messageBox')) {
+		if(this.cordovaPlugin) {
 			return window.plugins.messageBox.alert(title, msg, fn, scope);
 		} else {
 			return this.callParent(arguments);
@@ -21,7 +29,7 @@ Ext.define('Ext.ux.CordovaMessageBox', {
 	},
 
 	confirm: function(title, msg, fn, scope) {
-		if(window.plugins && window.plugins.hasOwnProperty('messageBox')) {
+		if(this.cordovaPlugin) {
 			return window.plugins.messageBox.confirm(title, msg, fn, scope);
 		} else {
 			return this.callParent(arguments);
@@ -29,7 +37,7 @@ Ext.define('Ext.ux.CordovaMessageBox', {
 	},
 
 	prompt: function(title, msg, fn, scope, multiLine, value, promptConfig) {
-		if(Ext.os.is.iOS && window.plugins && window.plugins.hasOwnProperty('messageBox')) {
+		if(this.cordovaPlugin) {
 			// value&multiLine not supported yet
 			promptConfig = promptConfig || {};
 			// scope moved to promptConfig
